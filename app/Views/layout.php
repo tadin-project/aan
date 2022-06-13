@@ -14,6 +14,36 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ?>/node_modules/admin-lte/dist/css/adminlte.min.css">
+  <!-- Sweetalert 2 -->
+  <link rel="stylesheet" href="<?= base_url() ?>/node_modules/sweetalert2/dist/sweetalert2.min.css">
+  <!-- Jstree -->
+  <link rel="stylesheet" href="<?= base_url() ?>/node_modules/jstree/dist/themes/default/style.min.css">
+  <!-- DataTables Bootstrap 4 -->
+  <link href="<?= base_url() ?>/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  <!-- DataTables Col Reorder Bootstrap 4 -->
+  <link href="<?= base_url() ?>/node_modules/datatables.net-colreorder-bs4/css/colReorder.bootstrap4.min.css" rel="stylesheet" />
+  <!-- DataTables Fixed Columns Bootstrap 4 -->
+  <link href="<?= base_url() ?>/node_modules/datatables.net-fixedcolumns-bs4/css/fixedColumns.bootstrap4.min.css" rel="stylesheet" />
+  <!-- DataTables Scroller Bootstrap 4 -->
+  <link href="<?= base_url() ?>/node_modules/datatables.net-scroller-bs4/css/scroller.bootstrap4.min.css" rel="stylesheet" />
+  <!-- DataTables Responsive Bootstrap 4 -->
+  <link href="<?= base_url() ?>/node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+  <!-- Bootstrap datepicker -->
+  <link href="<?= base_url() ?>/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+  <style>
+    .has-error {
+      color: #dc3545;
+    }
+
+    .has-error .form-control {
+      border-color: #dc3545;
+    }
+
+    .datepicker {
+      z-index: 1040 !important;
+    }
+  </style>
 
   <!-- jQuery -->
   <script src="<?= base_url() ?>/node_modules/admin-lte/plugins/jquery/jquery.min.js"></script>
@@ -32,7 +62,26 @@
   <!-- Jquery Validation -->
   <script src="<?= base_url() ?>/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
   <!-- Jquery Validation Plugin -->
-  <script src="<?= base_url() ?>/node_modules/jquery-validation/dist/localization/messages_id.min.js"></script>
+  <script src="<?= base_url() ?>/node_modules/jquery-validation/dist/localization/messages_id.min.js"></script> <!-- DataTables -->
+  <script src="<?= base_url() ?>/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+  <!-- DataTables Bootstrap 4 -->
+  <script src="<?= base_url() ?>/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <!-- DataTables Col Reorder -->
+  <script src="<?= base_url() ?>/node_modules/datatables.net-colreorder/js/dataTables.colReorder.min.js"></script>
+  <!-- DataTables Fixed Columns -->
+  <script src="<?= base_url() ?>/node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
+  <!-- DataTables Responsive -->
+  <script src="<?= base_url() ?>/node_modules/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <!-- DataTables Responsive Bootstrap 4 -->
+  <script src="<?= base_url() ?>/node_modules/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+  <!-- DataTables Scroller -->
+  <script src="<?= base_url() ?>/node_modules/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+  <!-- Jstree -->
+  <script src="<?= base_url() ?>/node_modules/jstree/dist/jstree.min.js"></script>
+  <!-- Chartjs -->
+  <script src="<?= base_url() ?>/node_modules/chart.js/dist/chart.min.js"></script>
+  <!-- Bootstrap Datepicker -->
+  <script src="<?= base_url() ?>/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

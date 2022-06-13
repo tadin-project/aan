@@ -17,7 +17,6 @@ class MsGroup extends MyController
     public function index()
     {
         $data['title'] = "Master Group";
-        $data['modul'] = $this->M_ms_group->get_modul();
         return $this->base_theme('v_ms_group', $data);
     }
 
@@ -198,11 +197,10 @@ class MsGroup extends MyController
     public function get_menu()
     {
         $group_id = $this->request->getVar('group_id');
-        $modul_id = $this->request->getVar('modul_id');
 
         $group_id = !empty($group_id) ? $group_id : 0;
 
-        $q = $this->M_ms_group->get_menu($modul_id, $group_id);
+        $q = $this->M_ms_group->get_menu($group_id);
         $res = [];
 
         if (count($q) > 0) {
@@ -228,8 +226,6 @@ class MsGroup extends MyController
 
     public function save_akses()
     {
-
-        $modul_id = $this->request->getVar('modul_id');
         $group_id = $this->request->getVar('group_id');
         $menu_id = !empty($this->request->getVar('menu_id')) ? $this->request->getVar('menu_id') : [];
         $data = [];
@@ -238,13 +234,12 @@ class MsGroup extends MyController
             foreach ($menu_id as $v) {
                 $data[] = [
                     'group_id' => $group_id,
-                    'modul_id' => $modul_id,
                     'menu_id' => $v
                 ];
             }
         }
 
-        $res = $this->M_ms_group->delete_akses($modul_id, $group_id);
+        $res = $this->M_ms_group->delete_akses($group_id);
         if ($res['status'] && count($data) > 0) {
             $res = $this->M_ms_group->save_akses($data);
         }

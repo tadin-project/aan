@@ -82,6 +82,14 @@ $routes->group('ms-group', static function ($routes) {
 });
 // ================ End Group ================
 
+// =============== Begin Profil ===============
+$routes->group('profil', static function ($routes) {
+    $routes->get('', 'Profil::index');
+    $routes->post('', 'Profil::update_user');
+    $routes->post('pass', 'Profil::update_pass');
+});
+// ================ End Profil ================
+
 // =============== Begin Setting ===============
 $routes->group('setting', static function ($routes) {
     $routes->get('', 'Setting::index');

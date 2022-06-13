@@ -90,26 +90,8 @@ class MsGroupModel extends Model
         return $this->db->query($sql)->getResult();
     }
 
-    public function get_modul()
+    public function get_menu($group_id = 1)
     {
-        $sql = "SELECT 
-                    *
-                from
-                    ms_modul
-                where
-                    modul_status = 1
-                order by
-                    modul_kode";
-
-        $res = $this->db->query($sql)->getResult();
-
-        return $res;
-    }
-
-    public function get_menu($modul_id, $group_id = 1)
-    {
-        $where = " AND mm.modul_id = $modul_id ";
-
         $sql = "SELECT
                     mm.menu_id ,
                     concat(mm.menu_nama, case when mm.menu_status = 0 then ' (NON-AKTIF)' else '' end) as menu_nama,
@@ -134,20 +116,17 @@ class MsGroupModel extends Model
                         menu_parent_id 
                 ) as child on
                     child.menu_parent_id = mm.menu_id
-                where
-                    0 = 0
-                    $where
                 order by
                     mm.menu_kode";
 
         return $this->db->query($sql)->getResult();
     }
 
-    public function delete_akses($modul_id, $group_id)
+    public function delete_akses($group_id)
     {
         $db = \Config\Database::connect();
         $group_menu = $db->table('group_menu');
-        $result = $group_menu->delete(['modul_id' => $modul_id, 'group_id' => $group_id]);
+        $result = $group_menu->delete(['group_id' => $group_id]);
         if ($result) {
             $res = [
                 'status' => true,

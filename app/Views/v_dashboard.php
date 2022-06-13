@@ -5,7 +5,6 @@
 <script src="<?= base_url() ?>/node_modules/highcharts/modules/export-data.js"></script>
 <script src="<?= base_url() ?>/node_modules/highcharts/modules/accessibility.js"></script> -->
 
-<h1 class="mt-4"><?= $title ?></h1>
 <div class="row" id="rowList">
   <div class="col-xl-12">
     <div class="card mb-4">
@@ -62,40 +61,40 @@
 <script>
   var PageAdvanced = function() {
 
-    var initTableLogger = function() {
-      var table = $('#tbl_vendor');
+    // var initTableLogger = function() {
+    //   var table = $('#tbl_vendor');
 
-      // begin first table
-      table.DataTable({
-        responsive: true,
-        searchDelay: 500,
-        processing: true,
-        serverSide: true,
-        ajax: {
-          url: '<?= base_url() ?>/dashboard/get_data',
-          type: 'POST',
-          data: function(d) {
-            d.ld_id = $("#ld_id").val()
-          },
-        },
-        columnDefs: [{
-          targets: [0],
-          orderable: false,
-        }, {
-          targets: [0],
-          className: 'text-center',
-        }, ],
-        "order": [
-          [1, 'asc']
-        ]
-      });
-    };
+    //   // begin first table
+    //   table.DataTable({
+    //     responsive: true,
+    //     searchDelay: 500,
+    //     processing: true,
+    //     serverSide: true,
+    //     ajax: {
+    //       url: '<?= base_url() ?>/dashboard/get_data',
+    //       type: 'POST',
+    //       data: function(d) {
+    //         d.ld_id = $("#ld_id").val()
+    //       },
+    //     },
+    //     columnDefs: [{
+    //       targets: [0],
+    //       orderable: false,
+    //     }, {
+    //       targets: [0],
+    //       className: 'text-center',
+    //     }, ],
+    //     "order": [
+    //       [1, 'asc']
+    //     ]
+    //   });
+    // };
 
     return {
 
       //main function to initiate the module
       init: function() {
-        initTableLogger();
+        // initTableLogger();
       },
 
     };

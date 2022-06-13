@@ -1,4 +1,3 @@
-<h1 class="mt-4"><?= $title ?></h1>
 <div class="row" id="rowList">
   <div class="col-xl-12">
     <div class="card mb-4">
@@ -119,7 +118,7 @@
           let data = formVendor.serialize() + '&user_id=' + $("#user_id").val()
 
           $.ajax({
-            url: '<?= base_url() ?>/profil/update_pass',
+            url: '<?= base_url() ?>/profil/pass',
             data: data,
             type: 'post',
             dataType: 'json',
@@ -185,7 +184,7 @@
           let data = formVendor.serialize() + '&user_id=' + $("#user_id").val()
 
           $.ajax({
-            url: '<?= base_url() ?>/profil/update_user',
+            url: '<?= base_url() ?>/profil',
             data: data,
             type: 'post',
             dataType: 'json',

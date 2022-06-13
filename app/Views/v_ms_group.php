@@ -1,4 +1,3 @@
-<h1 class="mt-4"><?= $title ?></h1>
 <div class="row" id="rowForm" style="display: none;">
   <div class="col-xl-12">
     <div class="card mb-4">
@@ -107,16 +106,6 @@
       </div>
       <div class="modal-body">
         <input type="hidden" id="group_id_akses">
-        <div class="row">
-          <label class="col-form-label col-md-3">Modul</label>
-          <div class="col-md-5">
-            <select name="modul_id" id="modul_id" class="form-control">
-              <?php foreach ($modul as $v) : ?>
-                <option value="<?= $v->modul_id ?>"><?= $v->modul_nama ?></option>
-              <?php endforeach ?>
-            </select>
-          </div>
-        </div>
         <div id="listMenu"></div>
       </div>
       <div class="modal-footer">
@@ -307,7 +296,6 @@
     $("#modalTitle").text(title);
     $("#modalAkses").modal('show');
     $("#group_id_akses").val(id);
-    $("#modul_id").trigger('change')
   }
 
   function get_menu() {
@@ -327,7 +315,6 @@
             return {
               'menu_id': node.id != "#" ? node.id : 0,
               'group_id': $("#group_id_akses").val(),
-              'modul_id': $("#modul_id").val(),
             };
           }
         }
@@ -339,7 +326,7 @@
   }
 
   function saveAkses() {
-    let data = "group_id=" + $("#group_id_akses").val() + "&modul_id=" + $("#modul_id").val();
+    let data = "group_id=" + $("#group_id_akses").val();
 
     const listMenu = $("#listMenu")
 
@@ -397,10 +384,6 @@
       resetForm()
       $("#rowForm").slideDown(500)
       $("#rowList").slideUp(500)
-    })
-
-    $("#modul_id").change(function() {
-      $("#listMenu").jstree(true).refresh(false, true);
     })
   });
 </script>

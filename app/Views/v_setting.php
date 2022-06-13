@@ -1,4 +1,3 @@
-<h1 class="mt-4"><?= $title ?></h1>
 <div class="row" id="rowForm" style="display: none;">
   <div class="col-xl-12">
     <div class="card mb-4">
