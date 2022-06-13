@@ -3,19 +3,17 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><?= $title ?> | Forgot Password</title>
 
-  <title>SB Admin 2 - Forgot Password</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url() ?>/node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="<?= base_url() ?>/node_modules/admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?= base_url() ?>/node_modules/admin-lte/dist/css/adminlte.min.css">
   <style type="text/css">
     .has-error {
       color: #dc3545;
@@ -24,67 +22,64 @@
     .has-error .form-control {
       border-color: #dc3545;
     }
-  </style>
 
+    .error-block {
+      color: #dc3545;
+    }
+  </style>
 </head>
 
-<body class="bg-gradient-primary">
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="<?= base_url() ?>"><b><?= $title ?></b></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
 
-  <div class="container">
-
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-      <div class="col-xl-6 col-lg-6 col-md-8">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                    <p class="mb-4">We get it, stuff happens. Just enter your email address below
-                      and we'll send you a link to reset your password!</p>
-                  </div>
-                  <form class="user" id="form_vendor" method="POST">
-                    <div class="form-group">
-                      <input class="form-control form-control-user" id="user_email" name="user_email" type="email" placeholder="Enter Email Address...">
-                      <div class="text-error"></div>
-                    </div>
-                    <button class="btn btn-primary btn-user btn-block" type="button" id="btnSubmit">Reset Password</button>
-                  </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="<?= base_url() . '/register' ?>">Create an Account!</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="<?= base_url() . '/' ?>">Already have an account? Login!</a>
-                  </div>
-                </div>
+        <form method="post" id="form_vendor">
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
               </div>
             </div>
           </div>
-        </div>
+          <div class="error-block mb-3"></div>
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" id="btnSubmit" class="btn btn-primary btn-block">Request new password</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
 
+        <p class="mt-3 mb-1">
+          <a href="<?= base_url() ?>">Login</a>
+        </p>
+        <p class="mb-0">
+          <a href="<?= base_url() . '/register' ?>" class="text-center">Register a new membership</a>
+        </p>
       </div>
-
+      <!-- /.login-card-body -->
     </div>
-
   </div>
+  <!-- /.login-box -->
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js"></script>
-  <script src="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="<?= base_url() ?>/node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"></script>
+  <!-- jQuery -->
+  <script src="<?= base_url() ?>/node_modules/admin-lte/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="<?= base_url() ?>/node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<?= base_url() ?>/node_modules/admin-lte/dist/js/adminlte.min.js"></script>
+  <!-- Sweetalert2 -->
   <script src="<?= base_url() ?>/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <!-- JQuery Validate -->
   <script src="<?= base_url() ?>/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+  <!-- JQuery Validate Plugin -->
   <script src="<?= base_url() ?>/node_modules/jquery-validation/dist/localization/messages_id.min.js"></script>
   <script>
     var AdvancedPage = function() {
@@ -108,22 +103,26 @@
           errorElement: 'span',
           ignore: 'input[type=hidden]',
           highlight: function(el, errorClass) {
-            $(el).closest('.form-group').first().addClass('has-error');
+            const parentEl = $(el).closest('.input-group').first()
+            parentEl.addClass('has-error');
+            parentEl.next('.error-block').show();
+            parentEl.next('.error-block').css('margin-top', '-15px');
           },
           unhighlight: function(el, errorClass) {
-            var $parent = $(el).closest('.form-group').first();
-            $parent.removeClass('has-error');
-            $parent.find('.help-block').hide();
+            const parentEl = $(el).closest('.input-group').first();
+            parentEl.removeClass('has-error');
+            parentEl.next('.error-block').hide();
+            parentEl.next('.error-block').css('margin-top', '0');
           },
           errorPlacement: function(error, el) {
-            error.appendTo(el.closest('.form-group').find('.text-error'));
+            error.appendTo(el.closest('.input-group').next(".error-block"));
           },
           submitHandler: function(form) {
             btnSubmit.attr('disabled', 'disabled').text('Loading...');
             let data = formVendor.serialize()
 
             $.ajax({
-              url: '<?= base_url() ?>/forgot-proses',
+              url: '<?= base_url() ?>/forgot-password',
               data: data,
               type: 'post',
               dataType: 'json',
@@ -171,7 +170,6 @@
       AdvancedPage.init()
     })
   </script>
-
 </body>
 
 </html>

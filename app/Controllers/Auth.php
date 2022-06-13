@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\AuthModel;
 use App\Models\MsUserModel;
+use App\Models\SettingModel;
 
 class Auth extends BaseController
 {
@@ -12,12 +13,20 @@ class Auth extends BaseController
     private $session_data;
     private $group_user_id = 3;
     protected $db;
+    private $nama_website;
 
     public function __construct()
     {
         $this->session_data = session();
         $this->AuthModel = new AuthModel();
+        $SettingModel = new SettingModel();
         $this->db = \Config\Database::connect();
+
+        foreach ($SettingModel->where('setting_status', 1)->findAll() as $k => $v) {
+            if ($v->setting_slug == 'nama_website') {
+                $this->nama_website = $v->setting_value;
+            }
+        }
     }
 
     public function index()
@@ -27,7 +36,10 @@ class Auth extends BaseController
             $url = $this->AuthModel->get_first_menu($userdata->user_id);
             return redirect()->to(base_url() . "/$url");
         }
-        echo view('auth/v_login');
+        $data = [
+            'title' => $this->nama_website,
+        ];
+        echo view('auth/v_login', $data);
     }
 
     public function register()
@@ -37,7 +49,10 @@ class Auth extends BaseController
             $url = $this->AuthModel->get_first_menu($userdata->user_id);
             return redirect()->to(base_url() . "/$url");
         }
-        echo view('auth/v_register');
+        $data = [
+            'title' => $this->nama_website,
+        ];
+        echo view('auth/v_register', $data);
     }
 
     public function forgot_password()
@@ -47,7 +62,10 @@ class Auth extends BaseController
             $url = $this->AuthModel->get_first_menu($userdata->user_id);
             return redirect()->to(base_url() . "/$url");
         }
-        echo view('auth/v_forgot_password');
+        $data = [
+            'title' => $this->nama_website,
+        ];
+        echo view('auth/v_forgot_password', $data);
     }
 
     public function reset_password()
@@ -60,10 +78,14 @@ class Auth extends BaseController
 
         $pr  = $this->db->table('password_reset')->where('pr_token', $this->request->getVar('token'))->get()->getRow();
         if ($pr) {
-            $data = $this->db->table('ms_user')->where('user_id', $pr->user_id)->get()->getRowArray();
+            $data = [
+                'title' => $this->nama_website,
+                'user_id' => $pr->user_id,
+            ];
+            // $data['user'] = $this->db->table('ms_user')->where('user_id', $pr->user_id)->get()->getRowArray();
             echo view('auth/v_reset_password', $data);
         } else {
-            echo view('auth/v_forgot_password');
+            return redirect()->to(base_url() . "/forgot-password");
         }
     }
 
@@ -217,7 +239,7 @@ class Auth extends BaseController
             if ($status > 0) {
                 $res = [
                     'status' => true,
-                    'url' => base_url() . '/reset_password?token=' . $token
+                    'url' => base_url() . '/reset-password?token=' . $token
                 ];
             } else {
                 $res = [

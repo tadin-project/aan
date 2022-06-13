@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class BaseModel extends Model
 {
-    public function get_sidebar($user_id, $modul_id, $parent_id = 0)
+    public function get_sidebar($user_id, $parent_id = 0)
     {
         $sql = "SELECT
                     distinct mm.menu_id ,
@@ -32,7 +32,6 @@ class BaseModel extends Model
                     child.menu_parent_id = mm.menu_id
                 where
                     gu.user_id = $user_id
-                    and mm.modul_id = $modul_id
                     and mm.menu_status = 1
                     and mm.menu_parent_id = $parent_id
                 order by
@@ -59,7 +58,7 @@ class BaseModel extends Model
                         </a>
                         <div id="collapse' . $value->menu_id . '" class="collapse" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
-                                ' . $this->get_sidebar($user_id, $modul_id, $value->menu_id) . '
+                                ' . $this->get_sidebar($user_id, $value->menu_id) . '
                             </div>
                         </div>
                     </li>

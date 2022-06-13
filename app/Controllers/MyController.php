@@ -46,7 +46,7 @@ class MyController extends BaseController
             'user_id' => $this->userdata->user_id,
         ];
 
-        $sidebarMenu = $this->BaseModel->get_sidebar($this->userdata->user_id, 1, 0);
+        $sidebarMenu = $this->BaseModel->get_sidebar($this->userdata->user_id, 0);
 
         $sidebar = [
             'judul_web' => !empty($this->nama_website) ? $this->nama_website : "Website",

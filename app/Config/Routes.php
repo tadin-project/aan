@@ -44,9 +44,9 @@ $routes->get('/', 'Auth::index');
 $routes->post('/login', 'Auth::login_proses');
 $routes->get('/register', 'Auth::register');
 $routes->post('/register', 'Auth::register_proses');
-$routes->get('/forgot-password', 'Auth::register');
+$routes->get('/forgot-password', 'Auth::forgot_password');
 $routes->post('/forgot-password', 'Auth::forgot_proses');
-$routes->get('/reset-password', 'Auth::register');
+$routes->get('/reset-password', 'Auth::reset_password');
 $routes->post('/reset-password', 'Auth::reset_proses');
 $routes->get('/logout', 'Auth::logout');
 // ================ End Auth ================

@@ -1,4 +1,6 @@
 <?php
+echo $this->extend('layout');
+
 echo $this->section('title');
 echo "Tes";
 echo $this->endSection('title');
