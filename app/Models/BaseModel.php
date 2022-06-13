@@ -41,30 +41,26 @@ class BaseModel extends Model
         $res = "";
 
         foreach ($result as $key => $value) {
-            if ($value->total <= 0 && $parent_id == 0) {
-                $res .=
-                    '<li class="nav-item">
-                        <a class="nav-link" href="' . base_url() . '/' . $value->menu_url . '">
-                            <i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle') . '"></i>
-                            <span>' . $value->menu_nama . '</span>
-                        </a>
-                    </li>';
-            } else if ($value->total > 0 && $parent_id == 0) {
-                $res .=
-                    '<li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse' . $value->menu_id . '" aria-expanded="true" aria-controls="collapse' . $value->menu_id . '">
-                            <i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle') . '"></i>
-                            <span>' . $value->menu_nama . '</span>
-                        </a>
-                        <div id="collapse' . $value->menu_id . '" class="collapse" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
+            if ($value->total > 0) {
+                $res .= '<li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle nav-icon') . '"></i>
+                                <p>
+                                    ' . $value->menu_nama . '
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
                                 ' . $this->get_sidebar($user_id, $value->menu_id) . '
-                            </div>
-                        </div>
-                    </li>
-                    ';
+                            </ul>
+                        </li>';
             } else {
-                $res .= '<a class="collapse-item" href="' . base_url() . '/' . $value->menu_url . '">' . $value->menu_nama . '</a>';
+                $res .= '<li class="nav-item">
+                            <a href="' . base_url() . '/' . $value->menu_url . '" class="nav-link">
+                                <i class="' . (!empty($value->menu_ikon) ? $value->menu_ikon : 'far fa-circle nav-icon') . '"></i>
+                                <p>' . $value->menu_nama . '</p>
+                            </a>
+                        </li>';
             }
         }
 

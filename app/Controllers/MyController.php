@@ -40,25 +40,28 @@ class MyController extends BaseController
             return redirect()->to(base_url() . '/');
         }
 
+        $judul_website = !empty($this->nama_website) ? $this->nama_website : "Website";
+        $judul_menu = !empty($data['title']) ? $data['title'] : "";
+
         $mainData = $data;
         $navbar = [
             'user_fullname' => $this->userdata->user_fullname,
-            'user_id' => $this->userdata->user_id,
         ];
 
         $sidebarMenu = $this->BaseModel->get_sidebar($this->userdata->user_id, 0);
 
         $sidebar = [
-            'judul_web' => !empty($this->nama_website) ? $this->nama_website : "Website",
             'ikon_web' => !empty($this->ikon_website) ? $this->ikon_website : "<i class=\"fas fa-laugh-wink\"></i>",
             'sidebar' => $sidebarMenu,
         ];
 
-        $mainData['title'] = $this->nama_website . (!empty($data['title']) ? " | " . $data['title'] : "");
+        $mainData['title'] = $judul_website . (!empty($judul_menu) ? " | " . $judul_menu : "");
+        $mainData['title_website'] = $judul_website;
+        $mainData['title_menu'] = $judul_menu;
         $mainData['navbar'] = view('template/navbar', $navbar);
         $mainData['sidebar'] = view('template/sidebar', $sidebar);
         $mainData['footer'] = [
-            'judul' => $this->nama_website
+            'judul' => $judul_website
         ];
         $mainData['content'] = view($url, $data);
 
