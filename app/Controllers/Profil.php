@@ -16,6 +16,9 @@ class Profil extends MyController
 
     public function index()
     {
+        if (!($this->userdata && $this->userdata->is_login == 1)) {
+            return redirect()->to(base_url() . '/');
+        }
         $id = $this->userdata->user_id;
         $data['user'] = $this->db->table('ms_user')->where('user_id', $id)->get()->getRow();
         $data['title'] = "Profil";
