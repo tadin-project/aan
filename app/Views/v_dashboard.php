@@ -1,9 +1,14 @@
-<!-- <script src="<?= base_url() ?>/node_modules/highcharts/highcharts.js"></script>
-<script src="<?= base_url() ?>/node_modules/highcharts/highcharts-more.js"></script>
-<script src="<?= base_url() ?>/node_modules/highcharts/modules/solid-gauge.js"></script>
-<script src="<?= base_url() ?>/node_modules/highcharts/modules/exporting.js"></script>
-<script src="<?= base_url() ?>/node_modules/highcharts/modules/export-data.js"></script>
-<script src="<?= base_url() ?>/node_modules/highcharts/modules/accessibility.js"></script> -->
+<!-- Leaflet CSS -->
+<link href="<?= base_url() ?>/node_modules/leaflet/dist/leaflet.css" rel="stylesheet" />
+<style>
+  #map {
+    width: 100%;
+    height: 45vh;
+  }
+</style>
+
+<!-- Leaflet JS -->
+<script src="<?= base_url() ?>/node_modules/leaflet/dist/leaflet.js"></script>
 
 <div class="row" id="rowList">
   <div class="col-xl-12">
@@ -20,37 +25,12 @@
         </div>
       </div>
       <div class="card-body">
-        <!-- <div class="row mb-3">
-          <div class="col-md-9">
-            <div class="row">
-              <label class="col-md-3 col-form-label">Periode</label>
-              <div class="col-md-9">
-                <div class="input-group">
-                  <input type="text" readonly class="form-control tgl" id="tgl_mulai" name="tgl_mulai" value="<?= date('d-m-Y') ?>">
-                  <span class="input-group-text">s/d</span>
-                  <input type="text" readonly class="form-control tgl" id="tgl_selesai" name="tgl_selesai" value="<?= date('d-m-Y') ?>">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
         <div class="row mb-3">
-          <div class="col-md-12">
-            <table class="table table-hover table-bordered table-striped" id="tbl_vendor">
-              <thead>
-                <tr>
-                  <th class="text-center">No.</th>
-                  <th class="text-center">Magnitude</th>
-                  <th class="text-center">Timer</th>
-                  <th class="text-center">Waktu</th>
-                  <th class="text-center">Output</th>
-                  <th class="text-center">Kondisi</th>
-                  <th class="text-center">Gangguan</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
+          <div class="col-md-8">
+            <div id="map"></div>
+          </div>
+          <div class="col-md-4 d-flex justify-content-center">
+            <img src="<?= base_url() ?>/assets/img/kapal.png" alt="Kapal tampilan atas" style="max-height: 250px;">
           </div>
         </div>
       </div>
@@ -59,6 +39,8 @@
 </div>
 
 <script>
+  let map, drd_lat, drd_lang, drd_accuracy, osm;
+
   var PageAdvanced = function() {
 
     // var initTableLogger = function() {
@@ -90,11 +72,22 @@
     //   });
     // };
 
+    const initMapLeaflet = function() {
+      map = L.map("map").setView({
+        lat: 0.7893,
+        lon: 113.9213
+      }, 5);
+      osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+    }
+
     return {
 
       //main function to initiate the module
       init: function() {
         // initTableLogger();
+        initMapLeaflet();
       },
 
     };

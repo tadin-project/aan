@@ -4,24 +4,28 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class DataRecord extends Migration
+class DataRecordDetail extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'dr_id'     => [
+            'drd_id'     => [
                 'type'              => 'INT',
                 'unsigned'          => true,
                 'auto_increment'    => true,
             ],
-            'dr_asal'   => [
+            'dr_id'     => [
+                'type'              => 'INT',
+                'unsigned'          => true,
+            ],
+            'drd_lat'   => [
                 'type'              => 'text',
             ],
-            'dr_tujuan' => [
+            'drd_long' => [
                 'type'              => 'text',
             ],
-            'dr_status' => [
-                'type'              => 'int',
+            'drd_accuracy' => [
+                'type'              => 'text',
             ],
             'created_at datetime default current_timestamp',
         ]);
@@ -32,6 +36,6 @@ class DataRecord extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('data_record');
+        //
     }
 }
