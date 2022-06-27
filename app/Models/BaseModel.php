@@ -9,33 +9,37 @@ class BaseModel extends Model
     public function get_sidebar($user_id, $parent_id = 0)
     {
         $sql = "SELECT
-                    distinct mm.menu_id ,
-                    mm.menu_nama ,
-                    mm.menu_url ,
-                    mm.menu_ikon ,
-                    coalesce(child.total, 0) as total
-                from
-                    ms_menu mm
-                inner join group_menu gm on
-                    gm.menu_id = mm.menu_id
-                inner join group_user gu on
-                    gu.group_id = gm.group_id
-                left join (
+                    *
+                from (
                     select
-                        count(*) as total,
-                        menu_parent_id
+                        distinct mm.menu_id ,
+                        mm.menu_kode ,
+                        mm.menu_nama ,
+                        mm.menu_url ,
+                        mm.menu_ikon ,
+                        coalesce(child.total, 0) as total
                     from
-                        ms_menu
-                    group by
-                        menu_parent_id 
-                    ) child on
-                    child.menu_parent_id = mm.menu_id
-                where
-                    gu.user_id = $user_id
-                    and mm.menu_status = 1
-                    and mm.menu_parent_id = $parent_id
+                        ms_menu mm
+                    inner join group_menu gm on
+                        gm.menu_id = mm.menu_id
+                    inner join group_user gu on
+                        gu.group_id = gm.group_id
+                    left join (
+                        select
+                            count(*) as total,
+                            menu_parent_id
+                        from
+                            ms_menu
+                        group by
+                            menu_parent_id 
+                        ) child on
+                        child.menu_parent_id = mm.menu_id
+                    where
+                        gu.user_id = $user_id
+                        and mm.menu_status = 1
+                        and mm.menu_parent_id = $parent_id ) x
                 order by
-                    mm.menu_kode";
+                    x.menu_kode";
         $result = $this->db->query($sql)->getResult();
 
         $res = "";
