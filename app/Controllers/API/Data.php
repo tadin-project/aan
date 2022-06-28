@@ -90,6 +90,7 @@ class Data extends BaseController
                 'status' => true,
                 'data' => [
                     'ld_value' => $ld_value,
+                    'data' => $data,
                 ],
             ]);
         } else {
