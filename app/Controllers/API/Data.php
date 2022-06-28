@@ -5,16 +5,19 @@ namespace App\Controllers\API;
 use App\Controllers\BaseController;
 use App\Models\DataDeviceModel;
 use App\Models\ListDeviceModel;
+use Config\Database;
 
 class Data extends BaseController
 {
     private $data_device;
     private $list_device;
+    private $db;
 
     public function __construct()
     {
         $this->data_device = new DataDeviceModel();
         $this->list_device = new ListDeviceModel();
+        $this->db = Database::connect();
     }
 
     public function check()
@@ -56,7 +59,17 @@ class Data extends BaseController
         $res = $this->list_device->save($data_ld);
         if (!$res) return $this->response->setStatusCode(400, 'Data Kompas gagal diperbarui!');
 
-        return $this->response->setStatusCode(201);
+        $sql = "SELECT
+                    concat(ld_up, ',', ld_right, ',', ld_down, ',', ld_left) as btn
+                from
+                    list_device ld
+                where
+                    ld.ld_id = $ld_id";
+
+        $ld_tombol = $this->db->query($sql)->getRow()->btn;
+
+        // return $this->response->setStatusCode(201, $ld_tombol);
+        echo $ld_tombol;
     }
 
     public function update_device()
