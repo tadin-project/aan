@@ -14,5 +14,6 @@ class DefaultSeeder extends Seeder
         $this->call('GroupUserSeeder');
         $this->call('GroupMenuSeeder');
         $this->call('SettingSeeder');
+        $this->call('ListDeviceSeeder');
     }
 }

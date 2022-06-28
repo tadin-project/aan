@@ -4,19 +4,26 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class DataRecordModel extends Model
+class ListDeviceModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'data_record';
-    protected $primaryKey       = 'dr_id';
+    protected $table            = 'list_device';
+    protected $primaryKey       = 'ld_id';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'dr_id',
-        'record_at',
+        'ld_id',
+        'ld_kode',
+        'ld_nama',
+        'ld_status',
+        'ld_kompas',
+        'ld_up',
+        'ld_right',
+        'ld_bottom',
+        'ld_left',
     ];
 
     // Dates

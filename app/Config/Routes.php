@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Controllers\API\Data;
+use App\Controllers\Dashboard;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -101,6 +102,8 @@ $routes->group('setting', static function ($routes) {
 // =============== Begin API ===============
 $routes->group('api', static function ($routes) {
     $routes->post('data', [Data::class, 'store']);
+    $routes->post('device', [Data::class, 'update_device']);
+    $routes->get('get_data_dashboard', [Dashboard::class, 'get_data_dashboard']);
 });
 // ================ End API ================
 /*

@@ -3,29 +3,87 @@
 namespace App\Controllers\API;
 
 use App\Controllers\BaseController;
-use App\Models\DataRecordModel;
+use App\Models\DataDeviceModel;
+use App\Models\ListDeviceModel;
 
 class Data extends BaseController
 {
-    protected $M_data_device;
+    private $data_device;
+    private $list_device;
 
     public function __construct()
     {
-        $this->M_data_device = new DataRecordModel();
+        $this->data_device = new DataDeviceModel();
+        $this->list_device = new ListDeviceModel();
+    }
+
+    public function check()
+    {
+        $device_kode = $this->request->getVar('device_kode');
+        $data = $this->list_device->where('ld_kode', $device_kode)->findAll();
+
+        if (count($data) > 0) {
+            return $data[0]->ld_id;
+        } else {
+            return 0;
+        }
     }
 
     public function store()
     {
-        $data = [
-            'record_at' => addslashes($this->request->getVar('record_at')),
+        $ld_id = $this->check();
+        if ($ld_id == 0) return $this->response->setStatusCode(400, 'Device Unknown!');
+
+        $dd_lat =  addslashes($this->request->getVar('lat'));
+        $dd_long =  addslashes($this->request->getVar('long'));
+        $ld_kompas =  addslashes($this->request->getVar('kompas'));
+
+        $data_dd = [
+            'ld_id' => $ld_id,
+            'dd_lat' => $dd_lat ? $dd_lat : 0,
+            'dd_long' => $dd_long ? $dd_long : 0,
         ];
 
-        $res = $this->M_data_device->save($data);
+        $res = $this->data_device->insert($data_dd);
+
+        if (!$res) return $this->response->setStatusCode(400, 'Data gagal ditambahkan!');
+
+        $data_ld = [
+            'ld_id' => $ld_id,
+            'ld_kompas' => $ld_kompas ? $ld_kompas : 0,
+        ];
+
+        $res = $this->list_device->save($data_ld);
+        if (!$res) return $this->response->setStatusCode(400, 'Data Kompas gagal diperbarui!');
+
+        return $this->response->setStatusCode(201);
+    }
+
+    public function update_device()
+    {
+        $ld_id = $this->request->getVar('ld_id');
+        $ld_position = $this->request->getVar('ld_position');
+        $ld_value = $this->request->getVar('ld_value');
+
+        $data = [
+            "ld_id" => $ld_id,
+            "ld_" . $ld_position => $ld_value,
+        ];
+
+        $res = $this->list_device->save($data);
 
         if ($res) {
-            return $this->response->setStatusCode(200)->setJSON(['msg' => 'Data berhasil ditambahkan!']);
+            return $this->response->setStatusCode(200)->setJSON([
+                'status' => true,
+                'data' => [
+                    'ld_value' => $ld_value,
+                ],
+            ]);
         } else {
-            return $this->response->setStatusCode(400)->setJSON(['msg' => 'Data gagal ditambahkan!']);
+            return $this->response->setStatusCode(400)->setJSON([
+                'status' => false,
+                'msg' => 'Gagal update. Silahkan hubungi admin',
+            ]);
         }
     }
 }
