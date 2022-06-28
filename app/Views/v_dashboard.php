@@ -65,7 +65,7 @@
                 </div>
               </div>
               <div class="col-12 text-center">
-                <button class="btn btn-kontrol btn-danger" data-value="0" data-position="down">
+                <button class="btn btn-kontrol btn-danger" data-value="0" data-position="bottom">
                   <i class="fas fa-arrow-alt-circle-down fa-2x"></i>
                 </button>
               </div>
@@ -93,13 +93,13 @@
         let statusError = false;
         let pesanError = "";
 
-        if ($('.btn-kontrol[data-position=up]').data('value') == 1 && ld_position == 'down' && ld_value == 1) {
+        if ($('.btn-kontrol[data-position=up]').data('value') == 1 && ld_position == 'bottom' && ld_value == 1) {
           statusError = true;
           pesanError = "Matikan dulu tombol majunya";
           console.log('disini');
         }
 
-        if ($('.btn-kontrol[data-position=down]').data('value') == 1 && ld_position == 'up' && ld_value == 1) {
+        if ($('.btn-kontrol[data-position=bottom]').data('value') == 1 && ld_position == 'up' && ld_value == 1) {
           statusError = true;
           pesanError = "Matikan dulu tombol mundurnya";
         }
