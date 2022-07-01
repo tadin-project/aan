@@ -34,10 +34,6 @@ class ListDevice extends Migration
                 'type'       => 'boolean',
                 'default' => 0,
             ],
-            'ld_bottom'       => [
-                'type'       => 'boolean',
-                'default' => 0,
-            ],
             'ld_left'       => [
                 'type'       => 'boolean',
                 'default' => 0,
