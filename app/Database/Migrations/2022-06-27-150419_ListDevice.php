@@ -32,7 +32,7 @@ class ListDevice extends Migration
             ],
             'ld_kemudi'       => [
                 'type'       => 'integer',
-                'default' => 0,
+                'default'    => 0,
             ],
             'ld_kompas'       => [
                 'type'       => 'float',
