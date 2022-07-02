@@ -26,20 +26,12 @@ class ListDevice extends Migration
                 'type'       => 'boolean',
                 'default' => 1,
             ],
-            'ld_up'       => [
+            'ld_motor'       => [
                 'type'       => 'boolean',
                 'default' => 0,
             ],
-            'ld_right'       => [
-                'type'       => 'boolean',
-                'default' => 0,
-            ],
-            'ld_bottom'       => [
-                'type'       => 'boolean',
-                'default' => 0,
-            ],
-            'ld_left'       => [
-                'type'       => 'boolean',
+            'ld_kemudi'       => [
+                'type'       => 'integer',
                 'default' => 0,
             ],
             'ld_kompas'       => [

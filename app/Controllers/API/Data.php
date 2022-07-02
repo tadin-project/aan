@@ -60,7 +60,7 @@ class Data extends BaseController
         if (!$res) return $this->response->setStatusCode(400, 'Data Kompas gagal diperbarui!');
 
         $sql = "SELECT
-                    concat(ld_up, ',', ld_right, ',', ld_bottom, ',', ld_left) as btn
+                    concat(ld_motor, ',', ld_kemudi) as btn
                 from
                     list_device ld
                 where
