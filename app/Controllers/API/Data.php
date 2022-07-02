@@ -79,11 +79,15 @@ class Data extends BaseController
         $ld_value = $this->request->getVar('ld_value');
 
         $data = [
-            "ld_id" => $ld_id,
             "ld_" . $ld_position => $ld_value,
         ];
 
-        $res = $this->list_device->save($data);
+        // echo '<pre>';
+        // print_r($data);
+        // print_r($ld_id);
+        // die;
+
+        $res = $this->list_device->update($ld_id, $data);
 
         if ($res) {
             return $this->response->setStatusCode(200)->setJSON([

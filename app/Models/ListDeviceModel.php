@@ -20,10 +20,8 @@ class ListDeviceModel extends Model
         'ld_nama',
         'ld_status',
         'ld_kompas',
-        'ld_up',
-        'ld_right',
-        'ld_bottom',
-        'ld_left',
+        'ld_motor',
+        'ld_kemudi',
     ];
 
     // Dates

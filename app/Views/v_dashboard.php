@@ -45,20 +45,25 @@
               </div>
             </div>
             <div class="row d-flex mx-auto" style="max-width: 230px;">
-              <div class="col-12 text-center mb-1">
-                <button class="btn btn-kontrol btn-danger" data-value="0" data-position="up">
+              <div class="col-12 text-center mb-3">
+                <button class="btn btn-kontrol btn-danger" data-value="0" data-position="motor">
                   <i class="fas fa-arrow-alt-circle-up fa-2x"></i>
                 </button>
               </div>
               <div class="col-12 mb-1">
                 <div class="row">
-                  <div class="col-6 align-self-start text-center">
-                    <button class="btn btn-kontrol btn-danger" data-value="0" data-position="left">
+                  <div class="col-4 align-self-start text-center">
+                    <button class="btn btn-kontrol btn-danger btn-kemudi" data-value="1" data-position="kemudi">
                       <i class="fas fa-arrow-alt-circle-left fa-2x"></i>
                     </button>
                   </div>
-                  <div class="col-6 align-self-end text-center">
-                    <button class="btn btn-kontrol btn-danger" data-value="0" data-position="right">
+                  <div class="col-4 align-self-center text-center">
+                    <button class="btn btn-kontrol btn-danger btn-kemudi" data-value="0" data-position="kemudi">
+                      <i class="fas fa-circle fa-2x"></i>
+                    </button>
+                  </div>
+                  <div class="col-4 align-self-end text-center">
+                    <button class="btn btn-kontrol btn-danger btn-kemudi" data-value="2" data-position="kemudi">
                       <i class="fas fa-arrow-alt-circle-right fa-2x"></i>
                     </button>
                   </div>
@@ -83,20 +88,10 @@
         const btn = $(this);
 
         const ld_position = btn.data('position');
-        const ld_value = btn.data('value') == 0 ? 1 : 0;
+        const ld_value = ld_position == 'kemudi' ? btn.data('value') : (btn.data('value') == 1 ? 0 : 1);
 
         let statusError = false;
         let pesanError = "";
-
-        if ($('.btn-kontrol[data-position=left]').data('value') == 1 && ld_position == 'right' && ld_value == 1) {
-          statusError = true;
-          pesanError = "Matikan dulu tombol belok kirinya";
-        }
-
-        if ($('.btn-kontrol[data-position=right]').data('value') == 1 && ld_position == 'left' && ld_value == 1) {
-          statusError = true;
-          pesanError = "Matikan dulu tombol belok kanannya";
-        }
 
         if (statusError) {
           Swal.fire({
@@ -125,10 +120,15 @@
             },
             success: res => {
               if (res.status) {
-                const ldValue = res.data.ld_value;
-                btn.data('value', ldValue);
-                btn.removeClass(ldValue == 1 ? 'btn-danger' : 'btn-success')
-                  .addClass(ldValue == 1 ? 'btn-success' : 'btn-danger');
+                if (ld_position == 'motor') {
+                  btn.data('value', ld_value)
+                  btn.removeClass(ld_value == 1 ? 'btn-danger' : 'btn-success')
+                    .addClass(ld_value == 1 ? 'btn-success' : 'btn-danger');
+                } else {
+                  $('.btn-kemudi').removeClass('btn-success').addClass('btn-danger');
+                  btn.removeClass('btn-danger')
+                    .addClass('btn-success');
+                }
               } else {
                 Swal.fire({
                   icon: "error",
