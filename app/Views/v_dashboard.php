@@ -34,7 +34,7 @@
             </div>
             <div class="row mb-3">
               <div class="col-md-12">
-                <iframe src="" frameborder="0" id="monitorCamera"></iframe>
+                <iframe width="100%" height="315" src="http://101.50.3.28:/WebRTCAppEE/play.html?name=tugasakhir" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
           </div>
