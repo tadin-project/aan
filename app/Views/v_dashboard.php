@@ -34,7 +34,7 @@
             </div>
             <div class="row mb-3">
               <div class="col-md-12">
-                <iframe width="100%" height="315" src="https://101.50.3.181/WebRTCAppEE/play.html?name=tugasakhir" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="315" src="https://rtc.tugasakhirppns.my.id/WebRTCAppEE/play.html?name=tugasakhir" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
           </div>
